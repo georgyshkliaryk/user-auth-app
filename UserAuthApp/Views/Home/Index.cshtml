@@ -12,25 +12,25 @@
 <div class="text-center">
     <h2 class="display-4" style="margin-bottom: 1em;">Manage users here</h2>
 </div>
-<div style="margin-bottom: 0.3em; display: flex;">
+@*<div style="margin-bottom: 0.3em; display: flex;">
     <form asp-action="BlockUser" asp-route-id="" method="post">
         <button type="submit" class="btn btn-primary" style="margin-right: 0.3em;" title="Block user(s)">Block user(s)</button>
     </form>
     <form asp-action="UnblockUser" asp-route-id="" method="post">
         <button type="submit" class="btn btn-success" style="margin-right: 0.3em;" title="Unblock user(s)"><i class="fas fa-unlock-alt"></i></button>
     </form>
-    <form asp-action="Delete" asp-route-id="" method="post">
+    <form asp-action="Delete123" asp-route-id="" method="post">
         <button type="submit" class="btn btn-danger" style="margin-right: 0.3em;" title="Delete user(s)"><i class="far fa-trash-alt"></i></button>
     </form>
-</div>
+</div>*@
 
 <table class="table">
     <thread>
         <tr>
-            <th style="text-align: center;">
+           @* <th style="text-align: center;">
                 Select&nbsp;All <br />
                 <input type="checkbox" id="checkAll" />
-            </th>
+            </th>*@
             <th>
                 Id
             </th>
@@ -55,9 +55,9 @@
         @foreach (var user in Model)
         {
             <tr>
-                <td style="text-align: center;">
+               @* <td style="text-align: center;">
                     <input type="checkbox" value="@user.Id" class="checkBox" name="tags"/>
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(userItem => user.Id)
                 </td>

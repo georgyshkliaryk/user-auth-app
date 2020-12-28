@@ -71,17 +71,20 @@ namespace UserAuthApp.Controllers
             }
         }
 
-     /*   [HttpPost]*//*
-        public async Task<ActionResult> Delete(string[] tags)
+/*     //   [HttpPost]
+        public async Task<ActionResult> Delete123(string[] tags)
         {
-            foreach (string tag in tags)
-            {
-                
-               // Customer obj = db.Customers.Find(customerID);
-                *//*ApplicationUser user = await userManager.FindByIdAsync(Id);
-                await userManager.DeleteAsync(user);*//*
-              //  db.Customers.Remove(obj);
-            }
+            var user = await userManager.FindByIdAsync(tags[0]);
+            await userManager.DeleteAsync(user);
+            *//* foreach (string tag in tags)
+             {
+
+                 // Customer obj = db.Customers.Find(customerID);
+                 ApplicationUser user = await userManager.FindByIdAsync(Id);
+                 await userManager.DeleteAsync(user);
+                 //  db.Customers.Remove(obj);
+             }
+             return RedirectToAction("Index");*//*
             return RedirectToAction("Index");
         }*/
 
