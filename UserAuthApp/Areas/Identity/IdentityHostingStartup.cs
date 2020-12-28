@@ -16,9 +16,17 @@ namespace UserAuthApp.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<UserAuthAppContext>(options =>
+                if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+                    services.AddDbContext<UserAuthAppContext>(options =>
+                    options.UseSqlServer(
+                        context.Configuration.GetConnectionString("UserAuthAppContextConnectionProd")));
+                else
+                    services.AddDbContext<UserAuthAppContext>(options =>
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("UserAuthAppContextConnection")));
+
+                services.BuildServiceProvider().GetService<UserAuthAppContext>().Database.Migrate();
+
 
                 services.AddDefaultIdentity<ApplicationUser>(options =>
                 {

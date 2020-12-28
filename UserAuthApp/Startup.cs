@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UserAuthApp.Data;
 
 namespace UserAuthApp
 {
@@ -32,6 +34,18 @@ namespace UserAuthApp
                 // enables immediate logout, after updating the user's stat.
                 options.ValidationInterval = TimeSpan.Zero;
             });
+
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+                services.AddDbContext<UserAuthAppContext>(options =>
+                    options.UseSqlServer(
+                        Configuration.GetConnectionString("UserAuthAppContextConnectionProd")));
+            else
+                services.AddDbContext<UserAuthAppContext>(options =>
+                    options.UseSqlServer(
+                        Configuration.GetConnectionString("UserAuthAppContextConnection")));
+
+            services.BuildServiceProvider().GetService<UserAuthAppContext>().Database.Migrate();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
