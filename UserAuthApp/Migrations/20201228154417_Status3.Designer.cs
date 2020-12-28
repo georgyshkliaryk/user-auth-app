@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UserAuthApp.Data;
 
 namespace UserAuthApp.Migrations
 {
     [DbContext(typeof(UserAuthAppContext))]
-    partial class UserAuthAppContextModelSnapshot : ModelSnapshot
+    [Migration("20201228154417_Status3")]
+    partial class Status3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -205,7 +207,7 @@ namespace UserAuthApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
